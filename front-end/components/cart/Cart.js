@@ -98,12 +98,21 @@ const Cart = () => {
           <button
             onClick={() => {
               if (cart.length) {
-                router.push("/compra/detalles");
+                let text = `Hola!%20Quiero%20consultar%20por%20los%20siguientes%20productos:${
+                  cart.length &&
+                  cart.map((i) => {
+                    let aux = `%0A-%20${i.name}`
+                    return aux
+                  })
+                }`;
+                window.location.replace(
+                  `https:wa.me/5492616930795?text=${text}`
+                );
               }
             }}
             className="px-6 py-2 bg-btn text-white w-full rounded-xl"
           >
-            <p>Confirmar compra</p>
+            <p>Consultar</p>
           </button>
         </div>
       </div>

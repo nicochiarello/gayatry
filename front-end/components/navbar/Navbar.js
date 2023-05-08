@@ -18,7 +18,7 @@ const Navbar = () => {
   }, [router]);
 
   return (
-    <div className="bg-white w-screen h-[5rem] flex justify-center items-center">
+    <div className="bg-stone-900 text-white w-screen h-[5rem] flex justify-center items-center">
       <div className="flex justify-between items-center w-[1200px] px-2">
         {mobileNavbar && (
           <MobileNavbar onClose={() => setMobileNavbar(false)} />
@@ -30,10 +30,10 @@ const Navbar = () => {
           <i className="bx bx-menu-alt-left text-3xl "></i>
         </div>
         <Link href={"/"} className="flex gap-3 items-center">
-          <div className="hidden md:flex w-[3rem] h-[3rem] text-xl font-medium items-center justify-center bg-main rounded-full text-yellow">
-            FH
+          <div className="hidden md:flex w-[3rem] h-[3rem] text-xl font-medium items-center justify-center bg-transparent rounded-full text-yellow">
+            <img src="logo.png" alt="" />
           </div>
-          <p className="font-semibold text-xl text-main">Feria Hermana</p>
+          <p className="font-semibold text-xl">GAYATRY</p>
         </Link>
         <div className="hidden h-full md:flex items-center gap-6 text-xl pr-2 font-light">
           <Link href={"/"}>Inicio</Link>
@@ -46,14 +46,14 @@ const Navbar = () => {
             className="relative cursor-pointer"
           >
             <i className="bx bx-cart "></i>
-            <span className="absolute -top-2 text-xs bg-yellow-400 rounded-full px-1 text-main">
+            <span className="absolute -top-2 text-xs bg-yellow-400 rounded-full px-1 text-secondarybg">
               {cart.length}
             </span>
           </div>
         </div>
         <div onClick={() => dispatch(modifyStatus())} className="relative md:hidden ">
           <i className="bx bx-cart text-3xl "></i>
-          <span className="absolute -top-2 text-xs bg-yellow-400 rounded-full pr-2 text-main">
+          <span className="absolute -top-2 text-xs bg-yellow-400 rounded-full pr-2 text-secondarybg">
               {cart.length}
             </span>
         </div>

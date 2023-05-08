@@ -36,8 +36,7 @@ const ProductItem = ({ item, cart }) => {
 
   imageIndex();
   return (
-    <Link
-      href={`/productos/${item._id}`}
+    <div
       className="w-full h-[22rem] bg-white rounded-xl overflow-hidden shadow-xl font-light max-w-[25rem]"
     >
       <div className="w-full h-[14rem]">
@@ -55,11 +54,11 @@ const ProductItem = ({ item, cart }) => {
       </div>
       <div className="px-2 py-2 text-md flex flex-col h-[8rem] justify-between">
         <div>
-          <h5 className="font-normal">{item.name}</h5>
-          <p>Talle {item.size}</p>
+          <h5 className="font-normal text-lg">{item.name}</h5>
+          {/* <p>Talle {item.size}</p> */}
         </div>
         <div className="flex w-full justify-between items-center">
-          <h5 className="font-light">
+          <h5 className="font-light text-lg">
             <span className="font-normal">$</span>
             {item.price}
           </h5>
@@ -71,7 +70,7 @@ const ProductItem = ({ item, cart }) => {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

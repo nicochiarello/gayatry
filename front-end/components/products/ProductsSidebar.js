@@ -5,7 +5,7 @@ const ProductsSidebar = ({categories, filters, setFilters}) => {
   return (
     <div className="hidden md:flex w-[15rem] bg-white flex-col rounded-xl h-[calc(100vh-6rem)] min-h-[40rem] shadow-2xl">
       <div className="flex flex-col my-2  py-4 pl-2 border-b pr-4 gap-1">
-        <p className="font-normal text-lg">Buscar</p>
+        <p className="font-normal text-lg">Buscador</p>
         <div className="relative">
           <input
             className="rounded-xl py-2 w-full px-2 bg-secondarybg text-white placeholder:text-white"

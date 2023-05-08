@@ -11,12 +11,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        bg: "#FFF9F2",
-        main: "#FF65C3",
+        bg: "#303030",
+        main: "#776010",
         yellow: "#FEDC5C",
-        btn: "#FFB5DC",
+        btn: "#DDC1A7",
         text: "#4E4E4E",
-        secondarybg: "#EEDED4",
+        secondarybg: "#D3D2D2",
       },
       fontFamily: {
         oswald: ["Oswald", "cursive"],
