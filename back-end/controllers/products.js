@@ -55,8 +55,6 @@ exports.create = async (req, res) => {
       name: req.body.name,
       price: req.body.price,
       category: req.body.category,
-      size: req.body.size,
-      view: req.body.view,
     });
     const path = {};
     const uploadImg = async () => {

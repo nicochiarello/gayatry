@@ -9,12 +9,11 @@ exports.createUser = async (req, res) => {
   if (!errors.isEmpty()) {
     res.status(400).json(errors);
   } else {
-    const userExists = await User.findOne({ email: req.body.email })
-    if(userExists){
+    const userExists = await User.findOne({ email: req.body.email });
+    if (userExists) {
       res.status(400).json({ msg: "El email ya existe" });
-      return
+      return;
     }
-
 
     const roles = req.body.roles;
     try {
@@ -34,11 +33,17 @@ exports.createUser = async (req, res) => {
       const create = await new User(user);
       await create.save();
       const token = await jwt.sign(
-        { email: create.email, userId: create._id.toString(), userRoles: user.roles },
+        {
+          email: create.email,
+          userId: create._id.toString(),
+          userRoles: user.roles,
+        },
         "feriahermanaAPI2425",
         { expiresIn: "3d" }
       );
-      res.status(200).json({ msg: "user created", user: create, token, roles:user.roles });
+      res
+        .status(200)
+        .json({ msg: "user created", user: create, token, roles: user.roles });
     } catch (error) {
       res.status(400).json({ msg: error });
     }
@@ -48,7 +53,9 @@ exports.createUser = async (req, res) => {
 exports.login = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  const userExists = await User.findOne({ email: email }).populate("orders").populate("roles");
+  const userExists = await User.findOne({ email: email })
+    .populate("orders")
+    .populate("roles");
 
   if (userExists) {
     const compare = await bcrypt.compare(password, userExists.password);
@@ -59,19 +66,17 @@ exports.login = async (req, res) => {
           userId: userExists._id.toString(),
           roles: userExists.roles,
         },
-        "feriahermanaAPI2425",
+        process.env.SECRET,
         { expiresIn: "1h" }
       );
-      res
-        .status(200)
-        .json({
-          msg: "user authenticated",
-          token,
-          cart: userExists.cart,
-          orders: userExists.orders,
-          _id: userExists._id,
-          role: userExists.roles 
-        });
+      res.status(200).json({
+        msg: "user authenticated",
+        token,
+        cart: userExists.cart,
+        orders: userExists.orders,
+        _id: userExists._id,
+        role: userExists.roles,
+      });
     } else {
       res.status(400).json({ password: "Contraseña incorrecta" });
     }
