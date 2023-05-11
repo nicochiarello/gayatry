@@ -32,9 +32,9 @@ const Cart = () => {
     <div
       onClick={handleClick}
       ref={cartRef}
-      className="bg-black w-full h-screen fixed top-0 left-0 flex justify-end bg-opacity z-50 overflow-y-scroll"
+      className="bg-black w-full h-full fixed top-0 left-0 flex justify-end bg-opacity z-50 overflow-y-scroll"
     >
-      <div className="w-full min-h-[40rem] max-w-[22rem] pb-12 sm:pb-4 sm:w-[28rem] h-full bg-white py-3 px-2 ">
+      <div className="w-full h-full min-h-[40rem] max-w-[22rem] pb-12 sm:pb-4 sm:w-[28rem] bg-white py-3 px-2 ">
         <div className="flex items-center justify-between sm:justify-center">
           <h4 className="text-lg">Productos seleccionados</h4>
           <div
