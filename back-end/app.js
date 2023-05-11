@@ -31,7 +31,7 @@ app.use("/api/email", testEmailRoute);
 app.use("/api", express.static("public"));
 
 mongoose
-  .connect("mongodb://localhost:27017/feriahermana")
+  .connect("mongodb://localhost:27017/gayatry")
   .then(() => console.log("db connected"))
   .catch((err) => console.log(err));
 

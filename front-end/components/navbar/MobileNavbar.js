@@ -30,10 +30,7 @@ const MobileNavbar = ({ onClose }) => {
           <Link className="py-4 px-3" href={"/productos"}>
             Productos
           </Link>
-          <Link className="py-4 px-3" href={"/retiros"}>
-            Retiros
-          </Link>
-          <a className="py-4 px-3" href={"https://wa.me/5492613662494"}>
+          <a className="py-4 px-3" href={"https://wa.me/5492613642922"}>
             Contacto
           </a>
         </div>

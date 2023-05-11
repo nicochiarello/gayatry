@@ -36,9 +36,6 @@ const Navbar = ({ section }) => {
           <Link href={"/dashboard/categorias"} className="w-full py-4 px-3">
             <p>Categorias</p>
           </Link>
-          <Link href={"/dashboard/retiros"} className="w-full py-4 px-3">
-            <p>Retiros</p>
-          </Link>
         </div>
       )}
     </nav>

@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Feria Hermana Login</title>
+        <title>Gayatry Login</title>
       </Head>
       <div className="w-screen h-screen flex items-center justify-center px-2 bg-btn">
         <Toaster />

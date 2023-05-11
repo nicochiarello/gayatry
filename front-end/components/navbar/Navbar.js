@@ -38,8 +38,8 @@ const Navbar = () => {
         <div className="hidden h-full md:flex items-center gap-6 text-xl pr-2 font-light">
           <Link href={"/"}>Inicio</Link>
           <Link href={"/productos?page=1"}>Productos</Link>
-          <Link href={"/retiros"}>Retiros</Link>
-          <a href={"https://wa.me/5492613662494"}>Contacto</a>
+          {/* <Link href={"/retiros"}>Retiros</Link> */}
+          <a href={"https://wa.me/5492613642922"}>Contacto</a>
           <div
             onClick={() => dispatch(modifyStatus())}
             href={"#"}

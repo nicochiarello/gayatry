@@ -25,7 +25,7 @@ const Productos = () => {
     <div className="w-full h-fit flex py-2">
       <Head>
         <title>Productos</title>
-        <meta name="description" content="Feria hermana productos" />
+        <meta name="description" content="Gayatry catálogo de productos" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

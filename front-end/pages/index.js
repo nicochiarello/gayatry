@@ -2,7 +2,8 @@ import Head from "next/head";
 import Cart from "../components/cart/Cart";
 import { useSelector } from "react-redux";
 
-export default function Home() {
+export default function Home({ items }) {
+  console.log(items);
   const cartStatus = useSelector((state) => state.cart.value.status);
   return (
     <>
@@ -13,7 +14,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex w-full flex-col gap-12 pt-4 relative">
-      {cartStatus && <Cart />}
+        {cartStatus && <Cart />}
         <div className="w-full relative h-[40rem] h- md:h-[38rem] overflow-hidden flex flex-col md:flex-row rounded-md">
           <div className="flex items-center justify-center h-[100%] w-[100%] bg-black text-white relative">
             <img
@@ -22,50 +23,39 @@ export default function Home() {
               alt=""
             />
             <div className="absolute text-center md:text-left left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] md:left-[5rem] md:translate-x-0">
-              <p className="font-bold text-[55px] md:text-[65px] leading-[50px] md:leading-[40px]">GAYATRY</p>
-              <p className="font-thin text-[30px]  md:text-[45px] md:ml-1">Deco y Bienestar</p>
+              <p className="font-bold text-[55px] md:text-[65px] leading-[50px] md:leading-[40px]">
+                GAYATRY
+              </p>
+              <p className="font-thin text-[30px]  md:text-[45px] md:ml-1">
+                Deco y Bienestar
+              </p>
             </div>
           </div>
         </div>
-        <h3 className="text-center text-white text-4xl">Destacados</h3>
+        {items.length && (
+          <h3 className="text-center text-white text-4xl">Destacados</h3>
+        )}
 
         <div className="w-full h-fit grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-2 sm:px-0 place-items-center">
-          <div className=" w-full relative max-w-[24rem] sm:max-w-none h-[28rem] flex flex-col items-center overflow-hidden">
-            <div className="w-full h-full rounded-xl overflow-hidden shadow-lg bg-black">
-              <img
-                className="w-full h-full object-cover opacity-60"
-                src="/sahumerios.png"
-                alt=""
-              />
-            </div>
-            <div className="w-[70%] py-4 bg-white -translate-y-[2rem] text-center rounded-xl shadow-lg">
-              <p>Producto</p>
-            </div>
-          </div>
-          <div className=" w-full relative max-w-[24rem] sm:max-w-none h-[28rem] flex flex-col items-center overflow-hidden">
-            <div className="w-full h-full rounded-xl overflow-hidden shadow-lg bg-black">
-              <img
-                className="w-full h-full object-cover opacity-60"
-                src="/sahumerios.png"
-                alt=""
-              />
-            </div>
-            <div className="w-[70%] py-4 bg-white -translate-y-[2rem] text-center rounded-xl shadow-lg">
-              <p>Producto</p>
-            </div>
-          </div>
-          <div className=" w-full relative max-w-[24rem] sm:max-w-none h-[28rem] flex flex-col items-center overflow-hidden">
-            <div className="w-full h-full rounded-xl overflow-hidden shadow-lg bg-black">
-              <img
-                className="w-full h-full object-cover opacity-60"
-                src="/sahumerios.png"
-                alt=""
-              />
-            </div>
-            <div className="w-[70%] py-4 bg-white -translate-y-[2rem] text-center rounded-xl shadow-lg">
-              <p>Producto</p>
-            </div>
-          </div>
+          {items.map((i) => {
+            return (
+              <div
+                key={i._id}
+                className=" w-full relative max-w-[24rem] sm:max-w-none h-[28rem] flex flex-col items-center overflow-hidden"
+              >
+                <div className="w-full h-full rounded-xl overflow-hidden shadow-lg bg-black">
+                  <img
+                    className="w-full h-full object-cover"
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${i.images[0].secureUrl}`}
+                    alt=""
+                  />
+                </div>
+                <div className="w-[70%] py-4 bg-white -translate-y-[2rem] text-center rounded-xl shadow-xl">
+                  <p>{i.name}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
         <div className="w-full h-fit flex flex-col flex-wrap items-center justify-center gap-8 px-2 sm:px-0">
           <div className=" w-full relative h-[30rem] flex flex-col items-center overflow-hidden">
@@ -105,20 +95,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-        {/* <div className="w-full h-[40rem] bg-green-400 relative">
-          <img className="object-cover w-full h-full" src="/fh2.jpeg" alt="" />
-          <div className="h-[100%] w-[100%] py-4  absolute top-0 left-0 flex items-center justify-center ">
-            <div className="w-[90%] md:w-[60%] md:min-w-[40rem] h-[100%] bg-btn rounded-sm text-black flex flex-col items-center justify-between py-[4rem]">
-              <div className="text-center flex gap-4 flex-col px-2 md:px-8">
-                <h4 className="text-[50px] md:text-[75px]">SUMATE A LA MODA CIRCULAR</h4>
-                <p className="text-2xl md:text-3xl">¡Vestirte con onda es posible!</p>
-              </div>
-              <div>
-                <p className="text-xl md:text-2xl">VENTA ONLINE</p>
-              </div>
-            </div>
-          </div>
-        </div> */}
         <div className="w-full h-fit py-8 flex items-center justify-center px-2 md:px-0">
           <div className="flex flex-col md:flex-row gap-2 justify-center items-center text-white">
             <i className="bx bxl-instagram text-[80px] md:text-[100px]"></i>
@@ -159,4 +135,24 @@ export default function Home() {
       </div>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  try {
+    const data = await fetch(
+      `${process.env.NEXT_PUBLIC_API}/api/products?items=3&page=1`
+    );
+    const { products } = await data.json();
+    return {
+      props: {
+        items: products,
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        items: [],
+      },
+    };
+  }
 }

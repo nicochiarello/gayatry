@@ -21,18 +21,17 @@ const Products = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [type, setType] = useState(0);
   const [warningPopup, setWarningPopup] = useState(false);
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState([]);
 
-  useEffect(()=>{
-    getCategories(null, setCategories)
-  },[])
+  useEffect(() => {
+    getCategories(null, setCategories);
+  }, []);
 
   useEffect(() => {
     if (router.query.page) {
       setPage(+router.query.page);
     }
   }, [router.query]);
-
 
   return (
     <div className="w-full h-full overflow-y-scroll">
@@ -49,12 +48,13 @@ const Products = () => {
           setProducts={setProducts}
           setLoader={setLoader}
           loader={loader}
-          options={{categories}}
-          redirect={()=>{
-            toast.error("La sesión caducó")
-            let cookies = new Cookies()
-            cookies.remove(process.env.NEXT_PUBLIC_FH_KEY)
-            router.push("/")}}
+          options={{ categories }}
+          redirect={() => {
+            toast.error("La sesión caducó");
+            let cookies = new Cookies();
+            cookies.remove(process.env.NEXT_PUBLIC_FH_KEY);
+            router.push("/");
+          }}
         />
       )}
 
@@ -71,7 +71,6 @@ const Products = () => {
             deleteProduct(selectedItem._id, setProducts, setLoader, () => {
               setWarningPopup(false);
               toast.success("Eliminado exitosamente");
-     
             });
           }}
         />
@@ -79,7 +78,7 @@ const Products = () => {
 
       <div
         onClick={() => setPopup(true)}
-        className="fixed bottom-4 right-2 w-[4rem] z-20 h-[4rem] rounded-full bg-blue-400 flex items-center justify-center cursor-pointer"
+        className="fixed bottom-4 right-2 w-[4rem] z-20 h-[4rem] rounded-full bg-blue-400 flex items-center justify-center cursor-pointer text-white"
       >
         <i className="bx bx-plus text-3xl"></i>
       </div>
@@ -92,8 +91,8 @@ const Products = () => {
         url={`${process.env.NEXT_PUBLIC_API_URI}/api/products`}
       />
 
-      <ProductsPagination pages={nbPages} page={page}/>
-      
+      <ProductsPagination pages={nbPages} page={page} />
+
       <div className="w-full h-full flex flex-col gap-4">
         {loader ? (
           <div className="w-full h-full flex items-center justify-center">
@@ -110,15 +109,15 @@ const Products = () => {
                   setSelectedItem(product);
                   setPopup(true);
                 }}
-                onDelete={(product)=>{
+                onDelete={(product) => {
                   setSelectedItem(product);
-                  setWarningPopup(true)
+                  setWarningPopup(true);
                 }}
               />
             );
           })
         ) : (
-          <div className="w-full h-full flex items-center justify-center">
+          <div className="w-full h-full flex items-center justify-center text-white">
             <p>No se han encontrado productos</p>
           </div>
         )}

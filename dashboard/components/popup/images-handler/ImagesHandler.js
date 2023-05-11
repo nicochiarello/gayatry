@@ -4,7 +4,6 @@ import Resizer from "react-image-file-resizer";
 const ImagesHandler = ({ setStateData, stateData }) => {
   const [preview, setPreview] = useState({});
   const [images, setImages] = useState({});
-  const [imagesToUpdate, setImagesToUpdate] = useState({});
   const fileInputRef = useRef();
   const [updatedImages, setUpdatedImages] = useState({});
 
@@ -50,7 +49,7 @@ const ImagesHandler = ({ setStateData, stateData }) => {
             for="dropzone-file"
             className="flex flex-col items-center justify-center w-[25rem] h-[28rem] border-2 border-gray-300 bg-gray-600 rounded-lg cursor-pointer"
           >
-            {preview ? (
+            {Object.keys(preview).length ? (
               <img
                 className="w-full h-full rounded-lg object-cover"
                 src={preview[0]}
@@ -59,7 +58,7 @@ const ImagesHandler = ({ setStateData, stateData }) => {
               <>
                 <svg
                   aria-hidden="true"
-                  className="w-10 h-10 mb-3 text-gray-400"
+                  className="w-10 h-10 mb-3 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -72,7 +71,7 @@ const ImagesHandler = ({ setStateData, stateData }) => {
                     d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                   ></path>
                 </svg>
-                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                <p className="mb-2 text-sm text-white">
                   <span className="font-semibold">Sube una imagen</span> o
                   arrastra y suelta
                 </p>
@@ -138,7 +137,6 @@ const ImagesHandler = ({ setStateData, stateData }) => {
               }}
               id="dropzone-file"
               type="file"
-              multiple
               className="hidden"
             />
           </label>

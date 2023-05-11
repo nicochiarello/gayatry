@@ -11,7 +11,6 @@ const ProductList = ({ categories, filters, setFilters }) => {
   const [products, setProducts] = useState([]);
   const [nbPages, setNbPages] = useState(1);
   const [loader, setLoader] = useState(true);
-
   const [page, setPage] = useState(1);
   const cart = useSelector((state) => state.cart.value.cart);
   const [mobileFilter, setMobileFilter] = useState(false);
@@ -47,13 +46,7 @@ const ProductList = ({ categories, filters, setFilters }) => {
         query={filters}
       />
 
-      <div className="w-full col-span-full py-4 bg-white flex justify-end items-center px-4 rounded-xl">
-        {/* <div
-          onClick={() => setMobileFilter(true)}
-          className="md:hidden w-[2rem] h-[2rem] rounded-full bg-btn flex items-center justify-center cursor-pointer"
-        >
-          <i className="bx bx-filter text-xl text-white"></i>
-        </div> */}
+      <div className="w-full h-fit col-span-full py-4 bg-white flex justify-end items-center px-4 rounded-xl">
         <div className="flex gap-4 items-center">
           <i className="bx bx-chevron-left"></i>
           <div className="flex gap-2">
@@ -75,9 +68,15 @@ const ProductList = ({ categories, filters, setFilters }) => {
           <i className="bx bx-chevron-right"></i>
         </div>
       </div>
-      {!loader && products.length ? products.map((i) => {
-        return <ProductItem cart={cart} key={i._id} item={i} />;
-      }) : <div className="col-span-full h-full">Estamos trabajando para traerte los mejores productos!</div>  }
+      {!loader && products.length ? (
+        products.map((i) => {
+          return <ProductItem cart={cart} key={i._id} item={i} />;
+        })
+      ) : (
+        <div className="col-span-full h-full">
+          Estamos trabajando para traerte los mejores productos!
+        </div>
+      )}
       {}
     </div>
   );
