@@ -105,8 +105,8 @@ const Cart = () => {
                     return aux
                   })
                 }`;
-                window.location.replace(
-                  `https:wa.me/5492616930795?text=${text}`
+                window.location.href(
+                  `https://wa.me/5492613642922?text=${text}`
                 );
               }
             }}
